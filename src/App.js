@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 function App() {
   const [inputvalue, setInputValue] = useState("");
   const [Found, isFound] = useState(null);
-  const [IpFound, setIpFound] = useState(0);
   const [AllIp, setAllIp] = useState([]);
   const [preboot, setPreBoot] = useState(true);
   const ipRef = useRef();
@@ -38,7 +37,7 @@ function App() {
     for (const ip of AllIp) {
       if (ip.startsWith(inputvalue)) {
         isFound(true);
-        setIpFound(ip);
+
         return;
       }
       isFound(false);
