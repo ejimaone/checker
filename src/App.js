@@ -1,5 +1,5 @@
 import "./App.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
   const [inputvalue, setInputValue] = useState("");
@@ -22,6 +22,20 @@ function App() {
   //   fectDataonLoad();
   //   console.log(AllIp);
   // }, [AllIp]);
+  async function checker() {
+    const response = await fetch(
+      "https://checker-75ecf-default-rtdb.europe-west1.firebasedatabase.app/list/ip.json",
+      {
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+
+    setAllIp(Object.values(data));
+  }
+  useEffect(() => {
+    checker();
+  }, []);
   /////////getting ip
   async function Find() {
     const response = await fetch(
