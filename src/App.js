@@ -61,11 +61,7 @@ function App() {
   }
   let content;
   if (Found) {
-    content = (
-      <p>
-        ALREADY IN USE : <br /> {IpFound}
-      </p>
-    );
+    content = <p>ALREADY IN USE</p>;
   } else if (!Found && !preboot) {
     content = <p>SAFE TO USE</p>;
   } else {
