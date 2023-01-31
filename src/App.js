@@ -66,11 +66,12 @@ function App() {
       "https://checker-75ecf-default-rtdb.europe-west1.firebasedatabase.app/list/ip.json",
       {
         method: "POST",
-        body: JSON.stringify(inputvalue),
+        body: JSON.stringify(inputvalue.trim()),
       }
     );
     setPreBoot(true);
     setInputValue("");
+    window.location.reload();
   }
   let content;
   if (Found) {
@@ -89,7 +90,11 @@ function App() {
         ref={ipRef}
         value={inputvalue}
         onChange={(event) => setInputValue(event.target.value)}
+        onFocus={() => {
+          setPreBoot(true);
+        }}
       />
+
       <div
         className={`status ${
           Found
