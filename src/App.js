@@ -6,6 +6,7 @@ function App() {
   const [Found, isFound] = useState(null);
   const [AllIp, setAllIp] = useState([]);
   const [preboot, setPreBoot] = useState(true);
+  const [loading, setLoading] = useState(false);
   const ipRef = useRef();
 
   // useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
   }, []);
   /////////getting ip
   async function Find() {
+    setLoading(true);
     const response = await fetch(
       "https://checker-75ecf-default-rtdb.europe-west1.firebasedatabase.app/list/ip.json",
       {
@@ -74,12 +76,14 @@ function App() {
     window.location.reload();
   }
   let content;
-  if (Found) {
+  if (Found && loading) {
     content = <p>ALREADY IN USE</p>;
   } else if (!Found && !preboot) {
     content = <p>SAFE TO USE</p>;
-  } else {
+  } else if (!Found && preboot && !loading) {
     content = <p>STATUS</p>;
+  } else {
+    content = <p>Loading</p>;
   }
 
   return (
@@ -92,6 +96,7 @@ function App() {
         onChange={(event) => setInputValue(event.target.value)}
         onFocus={() => {
           setPreBoot(true);
+          setLoading(false);
         }}
       />
 
