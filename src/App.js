@@ -63,13 +63,13 @@ function App() {
   if (Found) {
     content = (
       <p>
-        This Proxy is taken : <br /> {IpFound}
+        ALREADY IN USE : <br /> {IpFound}
       </p>
     );
   } else if (!Found && !preboot) {
-    content = <p>You can use this proxy</p>;
+    content = <p>SAFE TO USE</p>;
   } else {
-    content = <p>Proxy status</p>;
+    content = <p>STATUS</p>;
   }
 
   return (
